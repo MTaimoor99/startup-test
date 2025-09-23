@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -76,47 +78,178 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+      backgroundColor: Color(0xff09001a),
+      body: Column(
+        children:[
+        Stack(children: [
+          Image.asset('assets/images/car.png'),
+          Positioned(
+            bottom: 50,
+            left:24,
+            right: 24,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Saturday Morning Recap',
+                    style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 28,
+                    color: Colors.white,
+                    fontFamily: 'Kunaari')
+                    ),
+                    Row(
+                      children: [
+                        Text('Delfi Rally Estonia 2025',
+                        style: TextStyle(
+                          color: Colors.white,
+                    
+                        ),),
+                        const SizedBox(width:8),
+                        Container(height:16,width: 1.5,color: Color(0xfffd54cb)),
+                        const SizedBox(width:8),
+                        Text('5 min',
+                        style: TextStyle(
+                          color: Colors.white,
+                    
+                        ),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 8,),
+                    Row(
+                    spacing: 4,
+                    children: [
+                      Container(
+                        width: 32,
+                        height:5,
+                        decoration: BoxDecoration(
+                          color: Color(0xffff1fbc),
+                          borderRadius: BorderRadius.all(Radius.circular(50)),
+                        ),
+                      ),
+                      Container(
+                        width:5,
+                        height: 5,
+                        decoration: BoxDecoration(
+                          color: Color(0xffFEE0F9),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      Container(
+                        width:5,
+                        height: 5,
+                        decoration: BoxDecoration(
+                          color: Color(0xffFEE0F9),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      Container(
+                        width:5,
+                        height: 5,
+                        decoration: BoxDecoration(
+                          color: Color(0xffFEE0F9),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      Container(
+                        width:5,
+                        height: 5,
+                        decoration: BoxDecoration(
+                          color: Color(0xffFEE0F9),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ],
+                  ),
+                  ],
+                ),
+                SvgPicture.asset('assets/icons/play_icon.svg'),
+                
+                
+              ],
             ),
-          ],
+            
+          )
+        ],),
+        Container(
+          padding: EdgeInsets.only(top: 12,right:12,bottom:12,left:20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children:[
+                  SvgPicture.asset('assets/icons/record.svg'),
+                  const SizedBox(width:8),
+                  Text('Live Streams',
+                  style: TextStyle(
+                    fontFamily: 'Kunaari',
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 24,
+                    height: 24/28,
+                  ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('View All',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Kuunari',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height:14/14
+                  ),
+                  ),
+                  SvgPicture.asset('assets/icons/chevron-right.svg'),
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        SizedBox(
+          height:167,
+          child: Row(
+            children: [
+              Expanded(
+                child: ListView.separated(
+                  padding: EdgeInsets.only(left:20),
+                  separatorBuilder: (context, index) {
+                    return SizedBox(width:4);
+                  },
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  
+                  itemBuilder: (context, index) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width:196,
+                          height:70,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        SizedBox(height:8),
+                        Text(index.toString(),style: TextStyle(color: Colors.white),maxLines: 2,overflow: TextOverflow.ellipsis,)
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ));
   }
 }

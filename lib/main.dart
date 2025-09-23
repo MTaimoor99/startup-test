@@ -201,7 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Text('View All',
                   style: TextStyle(
                     color: Colors.white,
-                    fontFamily: 'Kuunari',
+                    fontFamily: 'Kunaari',
                     fontWeight: FontWeight.w700,
                     fontSize: 14,
                     height:14/14
@@ -213,40 +213,31 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-        SizedBox(
-          height:167,
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.only(left:20,right:12,top:8),
           child: Row(
-            children: [
-              Expanded(
-                child: ListView.separated(
-                  padding: EdgeInsets.only(left:20),
-                  separatorBuilder: (context, index) {
-                    return SizedBox(width:4);
-                  },
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  
-                  itemBuilder: (context, index) {
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width:196,
-                          height:70,
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                        ),
-                        SizedBox(height:8),
-                        Text(index.toString(),style: TextStyle(color: Colors.white),maxLines: 2,overflow: TextOverflow.ellipsis,)
-                      ],
-                    );
-                  },
-                ),
-              ),
-            ],
+            spacing: 4,
+            children: List.generate(10, (index){
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 96,
+                    width: 170,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(12),
+
+                    ),
+                    
+                  ),
+                  SizedBox(height:8),
+                  Text(index.toString(),style: TextStyle(color:Colors.white),maxLines:2,overflow:TextOverflow.ellipsis),
+                ],
+              );
+            })
           ),
         ),
       ],

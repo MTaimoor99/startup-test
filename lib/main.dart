@@ -1,5 +1,12 @@
+import 'dart:ffi';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:startup_test/bell_clipper.dart';
+import 'package:startup_test/double_slant_clipper.dart';
+import 'package:startup_test/points_clipper.dart';
+import 'package:startup_test/slanted_left_clipper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,18 +63,57 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  List<String> _liveStreamImagePaths = [
+    'assets/images/live_streams_pic1.png',
+    'assets/images/live_streams_pic2.png',
+    'assets/images/live_streams_pic2.png',
+    'assets/images/live_streams_pic2.png',
+    'assets/images/live_streams_pic2.png',
+    'assets/images/live_streams_pic2.png',
+    'assets/images/live_streams_pic2.png',
+    'assets/images/live_streams_pic2.png',
+    'assets/images/live_streams_pic2.png',
+    'assets/images/live_streams_pic2.png',
+  ];
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  List<String> _liveStreamCaptions = [
+    'Rali Serras De Fafe - Europe 2025',
+    'Rali Serras De Fafe - Europe 2025 - Historic Special Rally',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+  ];
+
+  List<String> _highlightsCaptions = [
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+    'Rali Serras De Fafe',
+  ];
+
+  List<String> _highlightsImagePaths = [
+    'assets/images/highlights_image_path1.png',
+    'assets/images/highlights_image_path2.png',
+    'assets/images/highlights_image_path2.png',
+    'assets/images/highlights_image_path2.png',
+    'assets/images/highlights_image_path2.png',
+    'assets/images/highlights_image_path2.png',
+    'assets/images/highlights_image_path2.png',
+    'assets/images/highlights_image_path2.png',
+    'assets/images/highlights_image_path2.png',
+    'assets/images/highlights_image_path2.png',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -82,9 +128,119 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         children:[
         Stack(children: [
+          
           Image.asset('assets/images/car.png'),
           Positioned(
-            bottom: 50,
+            right: 0,
+            left:0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Row(
+                  children: [
+                    ClipPath(
+                      clipper: SlantedLeftClipper(),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(left:12,bottom:16,right:32),
+                              height: 118.26,
+                              decoration: BoxDecoration(
+                                color: Color(0xffe000ac).withValues(alpha:0.5),
+                              ),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SvgPicture.asset('assets/icons/hamburger.svg'),
+                                  SizedBox(width:8),
+                                  SvgPicture.asset('assets/icons/pineamite.svg'),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Transform.translate(
+                    offset: Offset(-30, 0), // Move left by the slant amount (30px)
+                    child: ClipPath(
+                      clipper: DoubleSlantClipper(),
+                      child: Container(
+                        height: 118.26,
+                        width: 60, // Your desired width
+                        decoration: BoxDecoration(
+                          color: Color(0xffff1fbc).withValues(alpha: 0.25), // Your desired color
+                        ),
+                        // Add your content here
+                      ),
+                    ),
+                  ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ClipPath(
+                      clipper: BellClipper(),
+                      child: Container(
+                        padding: EdgeInsets.all(12),
+                        height: 47.7,
+                        width: 60, // Your desired width
+                        decoration: BoxDecoration(
+                          color: Color(0xffff1fbc).withValues(alpha: 0.25), // Your desired color
+                        ),
+                        child: SvgPicture.asset('assets/icons/bell-dot.svg',
+                        fit: BoxFit.scaleDown,
+                        ),
+                      ),
+                    ),
+                    Transform.translate(
+                      offset: Offset(-15, 0),
+                      child: ClipPath(
+                        clipper: PointsClipper(),
+                        child: Container(
+                          padding: const EdgeInsets.only(top:4.0,bottom:4.0,left:14.0,right: 14.0),
+                          height: 47.7, // Your desired width
+                          decoration: BoxDecoration(
+                            color: Color(0xffe000ac).withValues(alpha:0.5),// Your desired color
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Flexible(
+                                child: Text('2500',style:TextStyle(
+                                  color:Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  height: 1.25,
+                                )),
+                              ),
+                              Flexible(
+                                child: Text('points earned',style:TextStyle(
+                                  color:Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  height: 1.25,
+                                )),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  
+                  ],
+                  ),
+              ],
+              
+            ),
+          ),
+          Positioned(
+            bottom: 30,
             left:24,
             right: 24,
             child: Row(
@@ -215,10 +371,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          padding: EdgeInsets.only(left:20,right:12,top:8),
+          padding: EdgeInsets.only(left:20,right:12,top:8,bottom:8),
           child: Row(
             spacing: 4,
-            children: List.generate(10, (index){
+            children: List.generate(_liveStreamImagePaths.length, (index){
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -227,14 +383,99 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 96,
                     width: 170,
                     decoration: BoxDecoration(
-                      color: Colors.red,
                       borderRadius: BorderRadius.circular(12),
-
+                      image: DecorationImage(
+                        image: AssetImage(
+                        _liveStreamImagePaths[index]
+                      )),
                     ),
                     
                   ),
                   SizedBox(height:8),
-                  Text(index.toString(),style: TextStyle(color:Colors.white),maxLines:2,overflow:TextOverflow.ellipsis),
+                  SizedBox(
+                  width: 170,
+                  height: 47,
+                  child: Text(_liveStreamCaptions[index],
+                  style:TextStyle(
+                  color:Colors.white,
+                  fontFamily: 'Kunaari',
+                  fontWeight: FontWeight.w700,
+                  fontSize:17),maxLines:2,overflow:TextOverflow.ellipsis)),
+                ],
+              );
+            })
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(top: 12,right:12,bottom:12,left:20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children:[
+                  Text('Highlights',
+                  style: TextStyle(
+                    fontFamily: 'Kunaari',
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 24,
+                    height: 24/28,
+                  ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text('View More Clips',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Kunaari',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    height:14/14
+                  ),
+                  ),
+                  SvgPicture.asset('assets/icons/chevron-right.svg'),
+                ],
+              ),
+            ],
+          ),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: EdgeInsets.only(left:20,right:12,top:8,bottom:8),
+          child: Row(
+            spacing: 4,
+            children: List.generate(_highlightsImagePaths.length, (index){
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 96,
+                    width: 170,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                        image: AssetImage(
+                        _highlightsImagePaths[index]
+                      )),
+                    ),
+                    
+                  ),
+                  SizedBox(height:8),
+                  SizedBox(
+                  height: 47,
+                  width: 170,
+                  child: Text(_highlightsCaptions[index],style: TextStyle(
+                  color:Colors.white,
+                  fontFamily: 'Kunaari',
+                  fontWeight: FontWeight.w700,
+                  fontSize:17),
+                  maxLines:2,
+                  overflow:TextOverflow.ellipsis)),
                 ],
               );
             })

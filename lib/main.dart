@@ -456,6 +456,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Container(
                     height: 96,
                     width: 170,
+                    padding:EdgeInsets.only(right:8,top:8),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
                       image: DecorationImage(
@@ -463,7 +464,40 @@ class _MyHomePageState extends State<MyHomePage> {
                         _highlightsImagePaths[index]
                       )),
                     ),
-                    
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 3,horizontal: 10),
+                          decoration: BoxDecoration(
+                            color: Color(0xffa3ffff),
+                            borderRadius: BorderRadius.all(Radius.circular(24))
+                          ),
+                          child: Text('Maximilian Fischer',
+                          style: TextStyle(
+                            color: Color(0xff09001a),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 11,
+                          ),
+                          ),
+                        ),
+                        SizedBox(height: 8,),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 3,horizontal: 10),
+                          decoration: BoxDecoration(
+                            color: Color(0xfffd8cee),
+                            borderRadius: BorderRadius.all(Radius.circular(24))
+                          ),
+                          child: Text('Elena Martinez',
+                          style: TextStyle(
+                            color: Color(0xff09001a),
+                            fontWeight: FontWeight.w500,
+                            fontSize: 11,
+                          ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height:8),
                   SizedBox(

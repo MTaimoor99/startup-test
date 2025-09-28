@@ -538,7 +538,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                       ),
                     ),
                   ],
-                      ),
+                ),
                 ),
                 Positioned(
                     right: 0,
@@ -596,64 +596,67 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                             ],
                           ),
                         ),
-                        Row(
+                      ],
+                    ),
+                    
+                ),
+                Positioned(
+                top:68,
+                right:0,
+                child:Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            ClipPath(
-                              clipper: BellClipper(),
-                              child: Container(
-                                padding: EdgeInsets.all(12),
-                                height: 47.7,
-                                width: 60, // Your desired width
-                                decoration: BoxDecoration(
-                                  color: Color(0xffff1fbc).withValues(alpha: 0.25), // Your desired color
-                                ),
-                                child: SvgPicture.asset('assets/icons/bell-dot.svg',
-                                fit: BoxFit.scaleDown,
+                            Transform.translate(
+                              offset: Offset(15, 0),
+                              child: ClipPath(
+                                clipper: BellClipper(),
+                                child: Container(
+                                  padding: EdgeInsets.all(12),
+                                  height: 47.7,
+                                  width: 60, // Your desired width
+                                  decoration: BoxDecoration(
+                                    color: Color(0xffff1fbc).withValues(alpha: 0.25), // Your desired color
+                                  ),
+                                  child: SvgPicture.asset('assets/icons/bell-dot.svg',
+                                  fit: BoxFit.scaleDown,
+                                  ),
                                 ),
                               ),
                             ),
-                            Transform.translate(
-                              offset: Offset(-15, 0),
-                              child: ClipPath(
-                                clipper: PointsClipper(),
-                                child: Container(
-                                  padding: const EdgeInsets.only(top:4.0,bottom:4.0,left:14.0,right: 14.0),
-                                  height: 47.7, // Your desired width
-                                  decoration: BoxDecoration(
-                                    color: Color(0xffe000ac).withValues(alpha:0.5),// Your desired color
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Flexible(
-                                        child: Text('2500',style:TextStyle(
-                                          color:Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          height: 1.25,
-                                        )),
-                                      ),
-                                      Flexible(
-                                        child: Text('points earned',style:TextStyle(
-                                          color:Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          height: 1.25,
-                                        )),
-                                      ),
-                                    ],
-                                  ),
+                            ClipPath(
+                              clipper: PointsClipper(),
+                              child: Container(
+                                padding: const EdgeInsets.only(top:4.0,bottom:4.0,left:14.0,right: 14.0),
+                                height: 47.7, // Your desired width
+                                decoration: BoxDecoration(
+                                  color: Color(0xffe000ac).withValues(alpha:0.5),// Your desired color
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Flexible(
+                                      child: Text('2500',style:TextStyle(
+                                        color:Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        height: 1.25,
+                                      )),
+                                    ),
+                                    Flexible(
+                                      child: Text('points earned',style:TextStyle(
+                                        color:Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        height: 1.25,
+                                      )),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                           
                           ],
-                          ),
-                      ],
-                      
-                    ),
-                ),
+                          ),),
               ],
                   );
           }
